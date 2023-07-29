@@ -44,3 +44,24 @@ class TestGetJson(unittest.TestCase):
         with patch('requests.get', return_value=mock_response):
             response = get_json(test_url)
             self.assertEqual(response, test_payload)
+
+
+class TestMemoize(unittest.TestCase):
+    ''' Memoize test class '''
+    def test_memoize(self):
+        ''' Tests the memoize method '''
+
+        class TestClass:
+            ''' wrapper class for test memoize method '''
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        with patch.object(TestClass, 'a_method') as mock:
+            test_class = TestClass()
+            test_class.a_property()
+            test_class.a_property()
+            mock.assert_called_once()

@@ -19,4 +19,4 @@ class TestGithubOrgClient(unittest.TestCase):
         ''' Test GithubOrgClient.org '''
         test_class = GithubOrgClient(org_name)
         test_class.org()
-        mock.clled_with_once(test_class.ORG_URL.format(org=org_name))
+        mock.called_with_once(test_class.ORG_URL.format(org=org_name))
